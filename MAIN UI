@@ -2,19 +2,19 @@
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui") -- This ensures PlayerGui is loaded
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = PlayerGui
+ScreenGui.Parent = playerGui
 
 -- Create a Frame
 local MainFrame = Instance.new("Frame")
 MainFrame.Parent = ScreenGui
 MainFrame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black frame
-MainFrame.Size = UDim2.new(0, 400, 0, 250) -- Larger frame
-MainFrame.Position = UDim2.new(0.5, -200, 0.5, -125) -- Centered
+MainFrame.Size = UDim2.new(0, 400, 0, 300) -- Larger frame
+MainFrame.Position = UDim2.new(0.5, -200, 0.5, -150) -- Centered
 MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 MainFrame.BorderSizePixel = 0
 MainFrame.Visible = true -- Initially visible
 
--- Make it draggable
+-- Make the MainFrame draggable
 MainFrame.Active = true
 MainFrame.Draggable = true
 
@@ -47,15 +47,20 @@ spawn(function()
     applyRainbowText(Title)
 end)
 
--- Add buttons with modern design and functionality
+-- Button creation loop
 local buttonColors = {
     Color3.fromRGB(85, 170, 255), -- Blue
     Color3.fromRGB(85, 255, 127), -- Green
     Color3.fromRGB(255, 170, 0),  -- Orange
-    Color3.fromRGB(255, 85, 127)  -- Pink
+    Color3.fromRGB(255, 85, 127), -- Pink
+    Color3.fromRGB(255, 255, 0)   -- Yellow (for Modified Sprint)
 }
 
-for i = 1, 4 do
+local buttonLabels = {
+    "Noxious", "Hexxy", "Spooks hub", "Remove Vee Debuff", "Modified Sprint"
+}
+
+for i = 1, 5 do
     local Button = Instance.new("TextButton")
     Button.Parent = MainFrame
     Button.Size = UDim2.new(0.4, 0, 0.15, 0) -- 40% width, 15% height
@@ -69,30 +74,54 @@ for i = 1, 4 do
     ButtonCorner.CornerRadius = UDim.new(0.2, 0)
     ButtonCorner.Parent = Button
 
-    -- Customize button names
-    if i == 1 then
-        Button.Text = "Noxious"
-    elseif i == 2 then
-        Button.Text = "Hexxy"
-    elseif i == 3 then
-        Button.Text = "Spooks hub"
-    elseif i == 4 then
-        Button.Text = "Remove Vee Debuff"
-    end
+    Button.Text = buttonLabels[i]
 
     -- Add functionality for each button
     Button.MouseButton1Click:Connect(function()
         if i == 1 then
             loadstring(game:HttpGet("https://pastebin.com/raw/y8eKgLSs"))()
-            end
         elseif i == 2 then
             loadstring(game:HttpGet('https://pastefy.app/lY7xd0Ks/raw'))()
-            end
         elseif i == 3 then
             loadstring(game:HttpGet("https://rawscripts.net/raw/Dandy's-World-ALPHA-Spooks-Hub-25392"))()
-            end
         elseif i == 4 then
             loadstring(game:HttpGet('https://raw.githubusercontent.com/Idkanymorebro/RDW/refs/heads/main/Remove%20Vee%20debufd%20no%20ac'))()
+        elseif i == 5 then
+            loadstring(game:HttpGet("https://pastebin.com/raw/ARRJVDHX"))()
         end
     end)
 end
+
+-- Draggable Toggle Button
+local toggleButton = Instance.new("TextButton")
+toggleButton.Parent = ScreenGui -- Placed outside the frame so it stays visible
+toggleButton.Size = UDim2.new(0.3, 0, 0.1, 0) -- 30% width, 10% height
+toggleButton.Position = UDim2.new(0.5, -75, 0.05, 0) -- Top center of the screen
+toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red button
+toggleButton.Text = "Toggle GUI"
+toggleButton.TextScaled = true
+toggleButton.Font = Enum.Font.GothamBold
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+local ButtonCorner2 = Instance.new("UICorner")
+ButtonCorner2.CornerRadius = UDim.new(0.2, 0)
+ButtonCorner2.Parent = toggleButton
+
+local isVisible = true
+
+toggleButton.MouseButton1Click:Connect(function()
+    if isVisible then
+        MainFrame.Visible = false
+        toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green when hidden
+        toggleButton.Text = "Show GUI"
+    else
+        MainFrame.Visible = true
+        toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red when visible
+        toggleButton.Text = "Hide GUI"
+    end
+    isVisible = not isVisible
+end)
+
+-- Make the toggle button draggable
+toggleButton.Active = true
+toggleButton.Draggable = true
