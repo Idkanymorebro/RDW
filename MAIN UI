@@ -75,7 +75,7 @@ for i = 1, 4 do
     elseif i == 3 then
         Button.Text = "Spooks hub"
     elseif i == 4 then
-        Button.Text = "Show Message"
+        Button.Text = "Remove Vee Debuff"
     end
 
     -- Add functionality for each button
@@ -90,11 +90,7 @@ for i = 1, 4 do
             loadstring(game:HttpGet("https://rawscripts.net/raw/Dandy's-World-ALPHA-Spooks-Hub-25392"))()
             end
         elseif i == 4 then
-            print("Show Message button clicked!")
-            local message = Instance.new("Message", game.Workspace)
-            message.Text = "Hello, Roz's World!"
-            wait(2)
-            message:Destroy()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/Idkanymorebro/RDW/refs/heads/main/Remove%20Vee%20debufd%20no%20ac'))()
         end
     end)
 end
