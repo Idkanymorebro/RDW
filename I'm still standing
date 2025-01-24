@@ -1,0 +1,47 @@
+-- Roblox script to make the local player sing lyrics in the chat
+
+-- The lyrics to be sung
+local lyrics = {
+    "Heh...You could never know what it's like",
+    "Your blood like winter freezes just like ice",
+    "And there's a cold and lonely light that shines from you",
+    "You'll wind up like the wreck you hide behind that mask you use",
+    "",
+    "And did you think this fool could never win!?",
+    "Well look at me, I'm coming back again!",
+    "I got a taste of love in a simple way",
+    "And if you need to know while I'm still standing you just fade away",
+    "",
+    "Don't you know I'm still standing better than I ever did!",
+    "Looking like a true survivor, feeling like a little kid",
+    "",
+    "I'm still standing after all this time! 🔥",
+    "Picking up the pieces of my life without you on my mind! 🐺",
+    "",
+    "I'm still standing yeah yeah yeah! 🔥",
+    "I'm still standing yeah yeah yeah! 🔥",
+    "",
+    "Once I never could hope to win",
+    "You started down the road leaving me again",
+    "The threats you made were meant to cat me down",
+    "And if our love was just a circus you'd be a clown by now",
+    "",
+    "Y'know, I'm still standing better than I ever did",
+    "Looking like a true survivor, feeling like a little kid",
+    "I'm still standing after all this time",
+    "Picking up the pieces of my life without you on my mind",
+    "",
+    "I'm still standing yeah yeah yeah",
+    "I'm still standing yeah yeah yeah"
+}
+
+-- Function to make the local player sing the lyrics
+local function singLyrics()
+    for _, line in ipairs(lyrics) do
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(line, "All")
+        wait(3) -- Adjust the wait time if necessary
+    end
+end
+
+-- Call the function to start singing
+singLyrics()
