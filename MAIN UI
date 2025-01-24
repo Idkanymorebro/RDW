@@ -1,6 +1,8 @@
 -- Create a ScreenGui
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui") -- This ensures PlayerGui is loaded
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Parent = playerGui
 
 -- Create a Frame
 local MainFrame = Instance.new("Frame")
