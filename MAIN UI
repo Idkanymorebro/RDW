@@ -1,0 +1,126 @@
+-- Create a ScreenGui
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create a Frame
+local MainFrame = Instance.new("Frame")
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black frame
+MainFrame.Size = UDim2.new(0, 400, 0, 250) -- Larger frame
+MainFrame.Position = UDim2.new(0.5, -200, 0.5, -125) -- Centered
+MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+MainFrame.BorderSizePixel = 0
+MainFrame.Visible = true -- Initially visible
+
+-- Make it draggable
+MainFrame.Active = true
+MainFrame.Draggable = true
+
+-- Apply circular edges
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0.1, 0)
+UICorner.Parent = MainFrame
+
+-- Add a title label
+local Title = Instance.new("TextLabel")
+Title.Parent = MainFrame
+Title.Size = UDim2.new(1, 0, 0.2, 0) -- Take up the top 20% of the frame
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Text = "Roz's World"
+Title.TextScaled = true
+Title.Font = Enum.Font.GothamBold
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+-- Rainbow effect for the title
+local function applyRainbowText(label)
+    while true do
+        for hue = 0, 1, 0.01 do
+            label.TextColor3 = Color3.fromHSV(hue, 1, 1)
+            wait(0.05)
+        end
+    end
+end
+spawn(function()
+    applyRainbowText(Title)
+end)
+
+-- Add buttons with modern design and functionality
+local buttonColors = {
+    Color3.fromRGB(85, 170, 255), -- Blue
+    Color3.fromRGB(85, 255, 127), -- Green
+    Color3.fromRGB(255, 170, 0),  -- Orange
+    Color3.fromRGB(255, 85, 127)  -- Pink
+}
+
+for i = 1, 4 do
+    local Button = Instance.new("TextButton")
+    Button.Parent = MainFrame
+    Button.Size = UDim2.new(0.4, 0, 0.15, 0) -- 40% width, 15% height
+    Button.Position = UDim2.new(0.05 + (i % 2) * 0.5, 0, 0.3 + math.floor((i - 1) / 2) * 0.2, 0) -- Grid-like layout
+    Button.BackgroundColor3 = buttonColors[i]
+    Button.Text = "Button " .. i
+    Button.TextScaled = true
+    Button.Font = Enum.Font.Gotham
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+    local ButtonCorner = Instance.new("UICorner")
+    ButtonCorner.CornerRadius = UDim.new(0.2, 0)
+    ButtonCorner.Parent = Button
+
+    -- Add unique functionality for each button
+    Button.MouseButton1Click:Connect(function()
+        if i == 1 then
+            print("Button 1 clicked! Performing Action 1.")
+            -- Example: Teleport player
+            local player = game.Players.LocalPlayer
+            if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                player.Character.HumanoidRootPart.CFrame = CFrame.new(0, 10, 0) -- Teleport to a new position
+            end
+        elseif i == 2 then
+            print("Button 2 clicked! Performing Action 2.")
+            -- Example: Change player's walk speed
+            local player = game.Players.LocalPlayer
+            if player.Character and player.Character:FindFirstChild("Humanoid") then
+                player.Character.Humanoid.WalkSpeed = 50 -- Increase walk speed
+            end
+        elseif i == 3 then
+            print("Button 3 clicked! Performing Action 3.")
+            -- Example: Change the frame color
+            MainFrame.BackgroundColor3 = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)) -- Random color
+        elseif i == 4 then
+            print("Button 4 clicked! Performing Action 4.")
+            -- Example: Display a message
+            local message = Instance.new("Message", game.Workspace)
+            message.Text = "Hello, Roz's World!"
+            wait(2)
+            message:Destroy()
+        end
+    end)
+end
+
+-- Create a draggable toggle button
+local ToggleButton = Instance.new("TextButton")
+ToggleButton.Parent = ScreenGui
+ToggleButton.Size = UDim2.new(0, 100, 0, 50) -- Toggle button size
+ToggleButton.Position = UDim2.new(0, 50, 0.5, -25) -- Initially on the left side
+ToggleButton.BackgroundColor3 = Color3.fromRGB(85, 85, 255) -- Blue toggle button
+ToggleButton.Text = "Toggle"
+ToggleButton.TextScaled = true
+ToggleButton.Font = Enum.Font.Gotham
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+local ToggleCorner = Instance.new("UICorner")
+ToggleCorner.CornerRadius = UDim.new(0.5, 0)
+ToggleCorner.Parent = ToggleButton
+
+-- Make the toggle button draggable
+ToggleButton.Active = true
+ToggleButton.Draggable = true
+
+-- Toggle functionality
+local isFrameVisible = true
+ToggleButton.MouseButton1Click:Connect(function()
+    isFrameVisible = not isFrameVisible
+    MainFrame.Visible = isFrameVisible
+end)
