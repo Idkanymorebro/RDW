@@ -71,7 +71,7 @@ for i = 1, 4 do
     if i == 1 then
         Button.Text = "Noxious"
     elseif i == 2 then
-        Button.Text = "Speed Boost"
+        Button.Text = "Hexxy"
     elseif i == 3 then
         Button.Text = "Random Color"
     elseif i == 4 then
@@ -84,10 +84,7 @@ for i = 1, 4 do
             loadstring(game:HttpGet("https://pastebin.com/raw/y8eKgLSs"))()
             end
         elseif i == 2 then
-            print("Speed Boost button clicked!")
-            local player = game.Players.LocalPlayer
-            if player.Character and player.Character:FindFirstChild("Humanoid") then
-                player.Character.Humanoid.WalkSpeed = 50 -- Increase walk speed
+            loadstring(game:HttpGet('https://pastefy.app/lY7xd0Ks/raw'))()
             end
         elseif i == 3 then
             print("Random Color button clicked!")
