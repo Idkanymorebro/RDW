@@ -73,7 +73,7 @@ for i = 1, 4 do
     elseif i == 2 then
         Button.Text = "Hexxy"
     elseif i == 3 then
-        Button.Text = "Random Color"
+        Button.Text = "Spooks hub"
     elseif i == 4 then
         Button.Text = "Show Message"
     end
@@ -87,8 +87,8 @@ for i = 1, 4 do
             loadstring(game:HttpGet('https://pastefy.app/lY7xd0Ks/raw'))()
             end
         elseif i == 3 then
-            print("Random Color button clicked!")
-            MainFrame.BackgroundColor3 = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)) -- Random color
+            loadstring(game:HttpGet("https://rawscripts.net/raw/Dandy's-World-ALPHA-Spooks-Hub-25392"))()
+            end
         elseif i == 4 then
             print("Show Message button clicked!")
             local message = Instance.new("Message", game.Workspace)
