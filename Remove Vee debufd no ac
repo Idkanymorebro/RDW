@@ -1,0 +1,20 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Function to remove "Slow" debuff
+local function removeSlowDebuff()
+    local debuff = character:FindFirstChild("Slow") -- Search for the Slow debuff
+    if debuff then
+        debuff:Destroy() -- Remove the debuff immediately
+    end
+end
+
+-- Monitor continuously for any added children to the character
+character.ChildAdded:Connect(function(child)
+    if child.Name == "Slow" then
+        removeSlowDebuff() -- Counter the debuff as soon as it appears
+    end
+end)
+
+-- Initial check in case the "Slow" debuff is already present
+removeSlowDebuff()
