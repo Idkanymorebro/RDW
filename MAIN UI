@@ -1,3 +1,10 @@
+local gui = Instance.new("ScreenGui")
+gui.Name = "patrickGui"
+gui.Parent = game.CoreGui
+
+--///patrick gui maker///--
+
+
 -- Create a ScreenGui
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui") -- This ensures PlayerGui is loaded
@@ -95,10 +102,10 @@ end
 -- Draggable Toggle Button
 local toggleButton = Instance.new("TextButton")
 toggleButton.Parent = ScreenGui -- Placed outside the frame so it stays visible
-toggleButton.Size = UDim2.new(0.3, 0, 0.1, 0) -- 30% width, 10% height
+toggleButton.Size = UDim2.new(0.1, 0, 0.1, 0) -- 30% width, 10% height
 toggleButton.Position = UDim2.new(0.5, -75, 0.05, 0) -- Top center of the screen
 toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red button
-toggleButton.Text = "Toggle GUI"
+toggleButton.Text = "Toggle"
 toggleButton.TextScaled = true
 toggleButton.Font = Enum.Font.GothamBold
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -113,11 +120,11 @@ toggleButton.MouseButton1Click:Connect(function()
     if isVisible then
         MainFrame.Visible = false
         toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green when hidden
-        toggleButton.Text = "Show GUI"
+        toggleButton.Text = "Show"
     else
         MainFrame.Visible = true
         toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red when visible
-        toggleButton.Text = "Hide GUI"
+        toggleButton.Text = "Hide"
     end
     isVisible = not isVisible
 end)
